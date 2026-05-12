@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навигатор Образовательных Игр - Итоговый проект</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Manrope:wght@500;700;800&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-hidden { display: none; }
+        .slide-active { display: flex; animation: fadeIn 0.5s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Секция презентации продукта -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+        <div class="max-w-5xl w-full text-center">
+            <h1 class="text-6xl font-extrabold mb-6 tracking-tight">
+                <span class="gradient-text">Навигатор Образовательных Игр</span>
+            </h1>
+            <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+                Интеллектуальная система подбора цифровых инструментов для эффективного обучения, решающая проблему "бессмысленного гейминга".
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
+                <div class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100">
+                    <div class="text-indigo-600 text-3xl mb-3"><i class="fa-solid fa-microscope"></i></div>
+                    <h3 class="font-bold text-sm uppercase mb-2">Науки</h3>
+                    <p class="text-xs text-slate-500">Симуляторы и лаборатории</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-purple-50 border border-purple-100">
+                    <div class="text-purple-600 text-3xl mb-3"><i class="fa-solid fa-language"></i></div>
+                    <h3 class="font-bold text-sm uppercase mb-2">Языки</h3>
+                    <p class="text-xs text-slate-500">Лингвистические тренажеры</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-amber-50 border border-amber-100">
+                    <div class="text-amber-600 text-3xl mb-3"><i class="fa-solid fa-scroll"></i></div>
+                    <h3 class="font-bold text-sm uppercase mb-2">История</h3>
+                    <p class="text-xs text-slate-500">Исторические реконструкции</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-emerald-50 border border-emerald-100">
+                    <div class="text-emerald-600 text-3xl mb-3"><i class="fa-solid fa-calculator"></i></div>
+                    <h3 class="font-bold text-sm uppercase mb-2">Логика</h3>
+                    <p class="text-xs text-slate-500">Математические стратегии</p>
+                </div>
+            </div>
+
+            <a href="#app" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-all">
+                Перейти к навигатору <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Основное приложение-продукт -->
+    <main id="app" class="min-h-screen py-20 px-6 bg-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-white">
+                
+                <!-- Заголовок приложения -->
+                <div class="p-10 bg-slate-900 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl"><i class="fa-solid fa-compass"></i></div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-black mb-2">Навигатор</h2>
+                        <p class="text-slate-400">Выберите параметры вашего идеального урока</p>
+                    </div>
+                </div>
+
+                <!-- Форма фильтров -->
+                <div class="p-10 bg-white/50 border-b border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <label class="block font-bold text-slate-700">Предметная область:</label>
+                            <div class="grid grid-cols-1 gap-2">
+                                <select id="subject" class="w-full p-4 bg-white border-2 border-slate-200 rounded-2xl outline-none focus:border-indigo-500 transition-all appearance-none cursor-pointer">
+                                    <option value="math">Математика и Логика</option>
+                                    <option value="lang">Иностранные языки</option>
+                                    <option value="science">Естественные науки (Физика/Химия)</option>
+                                    <option value="humanities">Гуманитарные науки / История</option>
+                                    <option value="it">Информатика и Код</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="block font-bold text-slate-700">Формат урока:</label>
+                            <select id="format" class="w-full p-4 bg-white border-2 border-slate-200 rounded-2xl outline-none focus:border-indigo-500 transition-all appearance-none cursor-pointer">
+                                <option value="check">Проверка знаний (быстро)</option>
+                                <option value="new">Изучение нового материала</option>
+                                <option value="practice">Длительная практика / Проект</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button onclick="findGame()" class="w-full mt-10 bg-indigo-600 hover:bg-indigo-700 text-white p-5 rounded-2xl font-black text-lg shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-3">
+                        Подобрать игру <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <!-- Секция результатов -->
+                <div id="result-container" class="p-10 hidden bg-white">
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <div id="game-icon" class="w-24 h-24 shrink-0 bg-indigo-100 rounded-3xl flex items-center justify-center text-4xl text-indigo-600">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 id="game-name" class="text-3xl font-black text-slate-900">Название игры</h3>
+                                <span id="game-tag" class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full uppercase">МЕТОДИЧНО</span>
+                            </div>
+                            <p id="game-description" class="text-slate-600 text-lg leading-relaxed">Описание того, как эта игра помогает в обучении.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200">
+                            <h4 class="flex items-center gap-2 font-bold text-slate-900 mb-3">
+                                <i class="fa-solid fa-chalkboard-user text-indigo-500"></i> План внедрения
+                            </h4>
+                            <p id="game-plan" class="text-sm text-slate-600 leading-relaxed">Пошаговая инструкция для учителя.</p>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-rose-50 border border-rose-100">
+                            <h4 class="flex items-center gap-2 font-bold text-rose-900 mb-3">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-500"></i> Риск "пустой игры"
+                            </h4>
+                            <p id="game-risk" class="text-sm text-rose-700 leading-relaxed">На что обратить внимание, чтобы игра не стала просто развлечением.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-emerald-50 rounded-3xl border border-emerald-100 flex items-center gap-4">
+                        <div class="text-emerald-600 text-2xl"><i class="fa-solid fa-circle-check"></i></div>
+                        <div>
+                            <p class="text-sm font-bold text-emerald-900 uppercase tracking-wider">Ожидаемый результат</p>
+                            <p id="game-result" class="text-emerald-700 text-sm">Что ученик усвоит в итоге.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const database = {
+            'math_check': {
+                name: "99math",
+                tag: "Скорость",
+                desc: "Соревновательная платформа для отработки навыков устного счета и базовой алгебры в реальном времени.",
+                plan: "Запустите коллективный заезд на 5 минут в начале урока. Разделите класс на команды для повышения ответственности.",
+                risk: "Сильные ученики могут доминировать. Используйте режим 'улучшение личного результата'.",
+                result: "Автоматизм в базовых вычислениях и высокая вовлеченность с первых минут урока.",
+                icon: "fa-solid fa-calculator"
+            },
+            'math_new': {
+                name: "DragonBox Algebra",
+                tag: "Интуиция",
+                desc: "Игра, которая постепенно превращает игровые символы в алгебраические уравнения.",
+                plan: "Дайте ученикам пройти первые 2 уровня без объяснения правил. Затем перенесите логику игры на доску с обычными переменными.",
+                risk: "Ученики могут решать механически. Важно вовремя провести параллель с математической записью.",
+                result: "Понимание сути решения уравнений (перенос через знак равенства) без страха перед 'X' и 'Y'.",
+                icon: "fa-solid fa-dragon"
+            },
+            'lang_practice': {
+                name: "Influent",
+                tag: "Словарь",
+                desc: "3D-игра, где нужно исследовать квартиру и взаимодействовать с предметами на иностранном языке.",
+                plan: "Используйте как проектную задачу: 'Собери список предметов для кухни'. После игры — устный зачет в реальности.",
+                risk: "Ограниченный набор слов. Подходит только для начального и среднего уровней.",
+                result: "Прочная ассоциативная связь между визуальным образом предмета и его названием на языке.",
+                icon: "fa-solid fa-earth-americas"
+            },
+            'science_new': {
+                name: "PhET Interactive Simulations",
+                tag: "Лаборатория",
+                desc: "Профессиональные симуляции физических и химических процессов от университета Колорадо.",
+                plan: "Предложите ученикам 'взломать' систему: найти условия, при которых эксперимент пойдет не по плану (например, взрыв цепи).",
+                risk: "Слишком высокая свобода. Нужен четкий лист-задание с вопросами по ходу симуляции.",
+                result: "Наглядное понимание абстрактных законов физики через визуальный опыт.",
+                icon: "fa-solid fa-flask-vial"
+            },
+            'humanities_practice': {
+                name: "Sid Meier’s Civilization",
+                tag: "Стратегия",
+                desc: "Глобальная стратегия, моделирующая развитие цивилизаций от древности до будущего.",
+                plan: "Используйте для изучения темы 'Ресурсы и География'. Обсудите, как местоположение города в игре повлияло на его развитие.",
+                risk: "Огромные затраты времени. Рекомендуется только в формате внеурочной деятельности или долгосрочного проекта.",
+                result: "Понимание взаимосвязи экономики, политики и географии в истории человечества.",
+                icon: "fa-solid fa-landmark"
+            },
+            'it_new': {
+                name: "Swift Playgrounds / Scratch",
+                tag: "Алгоритмы",
+                desc: "Интерактивные миры, где управление персонажем происходит через написание реального кода.",
+                plan: "Задание: создать мини-игру 'Догонялки'. Это обучает циклам и условиям эффективнее любых учебников.",
+                risk: "Уход в дизайн вместо логики кода. Ограничьте время на выбор скинов персонажа.",
+                result: "Развитие алгоритмического мышления и создание первого реального цифрового продукта.",
+                icon: "fa-solid fa-code"
+            }
+        };
+
+        function findGame() {
+            const subject = document.getElementById('subject').value;
+            const format = document.getElementById('format').value;
+            const key = `${subject}_${format}`;
+            const container = document.getElementById('result-container');
+            
+            // Если точного совпадения нет, даем универсальный Kahoot/Quizlet
+            const result = database[key] || {
+                name: "Quizlet Live",
+                tag: "Универсально",
+                desc: "Командная игра на сопоставление терминов и их определений по любому предмету.",
+                plan: "Создайте модуль со словами. Запустите режим Live. Команды должны найти правильное определение быстрее всех.",
+                risk: "Поверхностное запоминание. Обязательно обсудите самые сложные карточки после игры.",
+                result: "Быстрое запоминание сложной терминологии через многократное повторение.",
+                icon: "fa-solid fa-layer-group"
+            };
+
+            document.getElementById('game-name').innerText = result.name;
+            document.getElementById('game-tag').innerText = result.tag;
+            document.getElementById('game-description').innerText = result.desc;
+            document.getElementById('game-plan').innerText = result.plan;
+            document.getElementById('game-risk').innerText = result.risk;
+            document.getElementById('game-result').innerText = result.result;
+            document.getElementById('game-icon').innerHTML = `<i class="${result.icon}"></i>`;
+
+            container.classList.remove('hidden');
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
+```
